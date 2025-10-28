@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tiadect Relay</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="hud">
+    <h1>Tiadect Relay Protocol</h1>
+    <div class="agent-panel" id="copilot-panel">
+      <h2>Microsoft Copilot</h2>
+      <textarea id="copilot-input" placeholder="Copilot prompt..."></textarea>
+      <button onclick="sendToChatGPT()">Send to ChatGPT</button>
+      <pre id="copilot-log"></pre>
+    </div>
+    <div class="agent-panel" id="chatgpt-panel">
+      <h2>ChatGPT</h2>
+      <textarea id="chatgpt-input" placeholder="ChatGPT prompt..."></textarea>
+      <button onclick="sendToCopilot()">Send to Copilot</button>
+      <pre id="chatgpt-log"></pre>
+    </div>
+    <div id="viewer">
+      <h2>Viewer HUD</h2>
+      <pre id="viewer-log"></pre>
+    </div>
+  </div>
+  <script src="tiadect.relay.js"></script>
+  <script src="tiadect.protocol.js"></script>
+</body>
+</html>
