@@ -1,0 +1,4 @@
+tiadect.toml
+*.log
+__pycache__/
+.tiadect/
