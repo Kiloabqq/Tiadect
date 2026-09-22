@@ -1,0 +1,19 @@
+[bridge]
+# GitHub repository used as the message bus.
+mailbox_repo = "Kiloabqq/Tiadect"
+
+# The local Git checkout Codex should use when a task does not specify repo_path.
+default_repo = "D:\\2026BARS\\bars-m3-review-engine(latest2026)"
+
+# Local executables. Change only if they are not on PATH.
+gh_bin = "gh"
+codex_bin = "codex"
+poll_seconds = 30
+max_output_chars = 50000
+
+[security]
+# Tiadect refuses to run Codex against a checkout outside these roots.
+# Narrow this list as much as practical.
+allowed_roots = [
+  "D:\\2026BARS"
+]
