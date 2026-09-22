@@ -153,7 +153,6 @@ def codex_exec(cfg: Config, repo: pathlib.Path, prompt: str, mode: str) -> tuple
         cmd = [
             cfg.codex_bin, "exec",
             "--sandbox", mode,
-            "--ask-for-approval", "never",
             "--json",
             "-o", str(last),
             "-",
