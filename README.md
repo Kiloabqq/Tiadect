@@ -128,6 +128,24 @@ Afterward, review `git diff` and `git status` locally. Tiadect does not automati
 
 Tiadect is intentionally small. It is a transport-and-execution adapter, not an autonomous orchestration platform. GitHub provides durable task state and auditability; Codex performs the local reasoning and coding; Git remains the source-of-truth for code changes.
 
+## Bug #0: Tiadect works so quietly that the operators think Tiadect doesn't work
+
+The first end-to-end acceptance test exposed Tiadect's first operational bug: the bridge completed the task so quietly that the operators initially thought nothing had happened.
+
+On 2026-09-24, a remote client created GitHub Issue #2 with `tiadect:ready`. The local bridge claimed it, invoked Codex against the approved BARS checkout in `read-only` mode, posted the result, and transitioned the Issue to `tiadect:done`. Because the local console did not clearly announce those lifecycle transitions, the successful run was briefly mistaken for a stalled daemon.
+
+**Bug #0:** *Tiadect works so quietly that the operators think Tiadect doesn't work.*
+
+The acceptance test proved the full round trip:
+
+```text
+remote client -> GitHub Issue -> Tiadect -> local Codex -> local Git repo
+                                                        |
+remote client <- GitHub Issue <- Tiadect <- Codex result
+```
+
+The test also established an operator-experience requirement: the local daemon should visibly log task claim, repository/mode, Codex launch, completion or failure, response posting, and final lifecycle state.
+
 ## Current status
 
 Tiadect 2 is under active validation. The bridge implementation, doctor command, Windows launcher, allowlist, task protocol, and GitHub Issue lifecycle are present. End-to-end smoke testing should be completed on each machine before write mode is trusted.
