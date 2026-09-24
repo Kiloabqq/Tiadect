@@ -299,3 +299,33 @@ python .\bridge.py --config .\tiadect.toml --doctor
 ```
 
 Review release notes and configuration changes before restarting the daemon.
+
+## Local logging (Bug #0)
+
+Successful bridge activity is now visible locally. Default logging reports startup,
+mailbox/poll interval, issue discovery/claim, validated repository and sandbox,
+Codex launch/completion (exit code and elapsed seconds), response posting, and
+terminal task state. Logs go immediately to stderr.
+
+Run directly to select a logging mode:
+
+```powershell
+python .\bridge.py --config .\tiadect.toml
+python .\bridge.py --config .\tiadect.toml --verbose
+python .\bridge.py --config .\tiadect.toml --quiet
+```
+
+Verbose adds polling, GitHub operation identifiers/state transitions, envelope
+parsing, path-validation progress, subprocess timing, and safe Codex metadata.
+Quiet suppresses routine activity but retains task failures and startup-critical
+errors. The flags are mutually exclusive; explicit doctor results remain visible.
+No prompts, issue titles/bodies, response text, subprocess output, environment
+values, tokens, or raw exception messages are added to local logs. Repository paths,
+mailbox name, issue numbers and sandbox mode are operational metadata.
+
+Read-only remains the default. Workspace-write still requires an explicit request;
+allowed roots and delegated CLI authentication are unchanged. No unrestricted
+mode is provided. Restart an existing daemon after updating to activate logging.
+GitHub failure comments use fixed failure categories and remediation guidance,
+never raw exception strings or captured command output. Successful Codex responses
+remain the intended result transport and are not sanitized.
