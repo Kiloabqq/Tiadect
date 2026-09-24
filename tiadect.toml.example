@@ -1,0 +1,23 @@
+[bridge]
+# GitHub repository used as the durable Tiadect task mailbox.
+# The authenticated gh user must be able to read/edit issues, labels, and comments here.
+mailbox_repo = "YOUR_GITHUB_USER/tiadect-mailbox"
+
+# Local Git checkout used when a task does not explicitly specify repo_path.
+# Replace this with a real checkout on this machine.
+default_repo = "D:\\Projects\\my-project"
+
+# Local executables. Use full paths only if these commands are not on PATH.
+gh_bin = "gh"
+codex_bin = "codex"
+
+# Poll interval and maximum final response size posted back to GitHub.
+poll_seconds = 30
+max_output_chars = 50000
+
+[security]
+# Tiadect refuses to run Codex against a checkout outside these roots.
+# Keep this as narrow as practical. Multiple approved project roots are supported.
+allowed_roots = [
+  "D:\\Projects\\my-project"
+]
